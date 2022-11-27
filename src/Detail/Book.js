@@ -11,12 +11,13 @@ const Book = () => {
 
   return (
     <>
-      <Header />
+      <Header check="book" />
       <Container>
         <Button width="90%" height="180px">
           <h6 className="stitle">책 {value}을 입력해주세요!</h6>
           <div className="search">
-            <input type="text" placeholder="INPUT" /> 🔎
+            <input type="text" placeholder="Search..." />
+            <button>🔎</button>
           </div>
 
           <RadioGroup value={value} onChange={setValue}>

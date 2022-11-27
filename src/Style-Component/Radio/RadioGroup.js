@@ -13,7 +13,7 @@ const RadioGroup = ({ label, children, ...rest }) => {
 const StyledFieldset = styled.fieldset`
   border: none;
   text-align: left;
-  padding: 0 0 0 10%;
+  padding: 0 0 0 3%;
 `;
 
 export default RadioGroup;

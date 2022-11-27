@@ -1,13 +1,35 @@
+.search {
+  position: relative;
+  right: 24px;
+}
+
 .search input {
   width: 90%;
-  height: 40px;
-  border-radius: 20px;
+  height: 48px;
+  /* border-radius: 20px; */
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
   margin-bottom: 15px;
   padding: 0 10px;
   font-size: 0.5em;
   font-weight: bold;
   outline: none;
   border: none;
+}
+
+.search button {
+  position: absolute;
+  height: 48px;
+  background-color: white;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 0 10px;
+  font-size: 0.7em;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  top: 0px;
+  margin: 0;
 }
 
 .stitle {
