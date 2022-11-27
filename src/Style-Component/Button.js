@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const Button = ({ width, height, children }) => {
+const Button = ({ width, height, check, children }) => {
   return (
-    <StyledButton width={width} height={height}>
+    <StyledButton width={width} height={height} check={check}>
       {children}
     </StyledButton>
   );
@@ -22,10 +22,13 @@ const StyledButton = styled.button`
   font-size: 2em;
   //font값도 props로 받아오기
 
-  &:hover {
+  ${(props) =>
+    props.check
+      ? `&:hover {
     border: 3px solid #0d99ff;
     cursor: pointer;
-  }
+  }`
+      : ""}
 
   @media screen and (max-width: 840px) {
     width: ${(props) => props.width || "330px"};

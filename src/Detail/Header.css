@@ -1,0 +1,28 @@
+.header_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 0.15fr);
+  justify-content: start;
+  margin: 20px 0 0 20px;
+  text-align: center;
+}
+
+.header_grid h1:nth-child(1) {
+  font: bold;
+  color: white;
+  font-size: 2.5em;
+}
+
+.header_grid h2 {
+  margin-top: 40px;
+}
+
+@media screen and (max-width: 840px) {
+  .header_grid {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0;
+    grid-auto-rows: 80px;
+  }
+  .item {
+    grid-column-end: span 2;
+  }
+}

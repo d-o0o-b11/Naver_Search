@@ -1,0 +1,21 @@
+.search input {
+  width: 90%;
+  height: 40px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  padding: 0 10px;
+  font-size: 0.5em;
+  font-weight: bold;
+  outline: none;
+  border: none;
+}
+
+.stitle {
+  margin: 10px 0 20px 0;
+}
+
+@media screen and (max-width: 840px) {
+  .search input {
+    width: 70%;
+  }
+}

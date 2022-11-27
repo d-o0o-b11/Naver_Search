@@ -8,6 +8,7 @@ const Container = ({ children }) => {
 const StyledContainer = styled.div`
   margin: 0 auto;
   text-align: center;
+  margin-top: 40px;
 `;
 
 export default Container;

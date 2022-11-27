@@ -3,6 +3,7 @@ import "./Main.css";
 import MainImg from "../img/main.png";
 import Container from "../Style-Component/Container";
 import Button from "../Style-Component/Button";
+import Link from "../Style-Component/Link";
 
 const Main = () => {
   return (
@@ -11,8 +12,13 @@ const Main = () => {
         <img src={MainImg} width="310px" height="310px" />
         <h1>S e a r c h</h1>
 
-        <Button>Book</Button>
-        <Button>Movie</Button>
+        <Link to="/book">
+          <Button check="true">Book</Button>
+        </Link>
+
+        <Link to="/movie">
+          <Button check="false">Movie</Button>
+        </Link>
       </div>
     </Container>
   );
