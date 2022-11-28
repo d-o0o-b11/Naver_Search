@@ -5,6 +5,7 @@ import Container from "../Style-Component/Container";
 import Button from "../Style-Component/Button";
 import Radio from "../Style-Component/Radio/Radio";
 import RadioGroup from "../Style-Component/Radio/RadioGroup";
+import Home from "../test/Home";
 
 const Movie = () => {
   const [value, setValue] = useState("제목");
@@ -32,6 +33,8 @@ const Movie = () => {
             </Radio>
           </RadioGroup>
         </Button>
+
+        <Home />
       </Container>
     </>
   );
