@@ -13,11 +13,15 @@ const Main = () => {
         <h1>S e a r c h</h1>
 
         <Link to="/book">
-          <Button check="true">Book</Button>
+          <Button check="true">
+            <h5>Book</h5>
+          </Button>
         </Link>
 
         <Link to="/movie">
-          <Button check="false">Movie</Button>
+          <Button check="false">
+            <h5>Movie</h5>
+          </Button>
         </Link>
       </div>
     </Container>

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function Movie({ idx, id, title, poster, actors, year }) {
+const MovieList = ({ id, title, poster, actors, year }) => {
   const title_rep = title
     .replace(/&amp;/g, "&")
     .replace("<b>", "")
@@ -38,9 +38,9 @@ function Movie({ idx, id, title, poster, actors, year }) {
       </div>
     </div>
   );
-}
+};
 
-Movie.propTypes = {
+MovieList.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
@@ -48,4 +48,4 @@ Movie.propTypes = {
   year: PropTypes.string.isRequired,
 };
 
-export default Movie;
+export default MovieList;

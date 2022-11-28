@@ -11,7 +11,7 @@ const Radio = ({ children, value, name, defaultChecked, disabled }) => {
         type="radio"
         value={value}
         name={name}
-        defaultChecked={defaultChecked}
+        // defaultChecked={defaultChecked}
         disabled={disabled || group.disabled}
         checked={group.value !== undefined ? value === group.value : undefined}
         onChange={(e) => group.onChange && group.onChange(e.target.value)}

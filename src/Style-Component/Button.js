@@ -9,7 +9,7 @@ const Button = ({ width, height, check, children }) => {
   );
 };
 
-const StyledButton = styled.button`
+const StyledButton = styled.div`
   width: ${(props) => props.width || "430px"};
   heigth: ${(props) => props.height || "100px"};
   min-height: ${(props) => props.height || "100px"};
@@ -20,12 +20,31 @@ const StyledButton = styled.button`
   display: block;
   margin-top: 30px;
   font-size: 2em;
+  position: relative;
   //font값도 props로 받아오기
+
+  h5 {
+    position: absolute;
+    height: 40px;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 200px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  div {
+    padding-top: 20px;
+  }
 
   ${(props) =>
     props.check
       ? `&:hover {
-    border: 3px solid #0d99ff;
+    background-color: #E3C39E;
     cursor: pointer;
   }`
       : ""}
