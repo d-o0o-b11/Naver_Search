@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import "./Detail.css";
 import Container from "../Style-Component/Container";
@@ -14,11 +14,18 @@ const Book = () => {
   const [data, Setdata] = useState([]);
   const [total, SetTotal] = useState(0);
   const [title, SetTitle] = useState("");
+  const [isLoading, SetIsLoading] = useState(true);
+  const [limit, setLimit] = useState(9);
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
+
+  useEffect(() => {
+    SetIsLoading(false);
+  }, []);
 
   const onInsertList = () => {
-    if (title === "") {
-      console.log("값을 입력해주세요");
-    } else {
+    if (title !== "") {
+      SetIsLoading(true);
       const ID_KEY = "WsGKyLCy_ji5cwnsgvoZ";
       const SECRET_KEY = "9OQFQICZ8p";
       axios
@@ -36,6 +43,8 @@ const Book = () => {
         .then((res) => {
           Setdata(res.data.items);
           SetTotal(res.data.total);
+          SetIsLoading(false);
+          setPage(1);
         })
         .catch((err) => console.log(err));
     }
@@ -44,10 +53,6 @@ const Book = () => {
   const handleChange = (e) => {
     SetTitle(e.target.value);
   };
-
-  const [limit, setLimit] = useState(9);
-  const [page, setPage] = useState(1);
-  const offset = (page - 1) * limit;
 
   const enterinput = (e) => {
     if (e.key === "Enter") {
@@ -86,7 +91,13 @@ const Book = () => {
             </RadioGroup> */}
           </div>
         </Button>
-        <BookItem data={data} total={total} offset={offset} limit={limit} />
+        <BookItem
+          data={data}
+          total={total}
+          offset={offset}
+          limit={limit}
+          isLoading={isLoading}
+        />
 
         <Pagination total={total} limit={limit} page={page} setPage={setPage} />
       </Container>

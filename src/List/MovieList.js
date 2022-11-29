@@ -2,6 +2,8 @@ import React from "react";
 import "./MovieList.css";
 import PropTypes from "prop-types";
 import ListItem from "../Style-Component/ListItem";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const MovieList = ({ id, title, poster, year }) => {
   const title_rep = title

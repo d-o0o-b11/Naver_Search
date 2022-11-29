@@ -2,6 +2,8 @@ import React from "react";
 import "./MovieList.css";
 import PropTypes from "prop-types";
 import ListItem from "../Style-Component/ListItem";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const BookList = ({ id, title, poster, author, year }) => {
   const title_rep = title
@@ -18,7 +20,7 @@ const BookList = ({ id, title, poster, author, year }) => {
         <div className="movie_data">
           {/* <h3 className="movie_title">{title_rep}</h3> */}
           <h4 dangerouslySetInnerHTML={{ __html: title }}></h4>
-          <h5 className="movie_year">{year}</h5>
+          {/* <h5 className="movie_year">{year.substring(0, 4)}</h5> */}
           <p className="movie_author">
             {author_list.map((actor, index) => {
               var actor_link =
@@ -39,6 +41,7 @@ const BookList = ({ id, title, poster, author, year }) => {
               }
             })}
           </p>
+          <h5 className="movie_year">{year.substring(0, 4)}</h5>
         </div>
       </div>
     </ListItem>

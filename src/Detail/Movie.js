@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import "./Detail.css";
 import Container from "../Style-Component/Container";
 import Button from "../Style-Component/Button";
-import Radio from "../Style-Component/Radio/Radio";
-import RadioGroup from "../Style-Component/Radio/RadioGroup";
 import MoveItem from "../List/MoveItem";
 import axios from "axios";
 import Pagination from "../Pagenation/Pagenation";
@@ -14,9 +12,15 @@ const Movie = () => {
   const [data, Setdata] = useState([]);
   const [total, SetTotal] = useState(0);
   const [title, SetTitle] = useState("");
+  const [isLoading, SetIsLoading] = useState(true);
+
+  useEffect(() => {
+    SetIsLoading(false);
+  }, []);
 
   const onInsertList = () => {
     if (title !== "") {
+      SetIsLoading(true);
       const ID_KEY = "WsGKyLCy_ji5cwnsgvoZ";
       const SECRET_KEY = "9OQFQICZ8p";
       axios
@@ -34,6 +38,8 @@ const Movie = () => {
         .then((res) => {
           Setdata(res.data.items);
           SetTotal(res.data.total);
+          SetIsLoading(false);
+          setPage(1);
         })
         .catch((err) => console.log(err));
     }
@@ -71,22 +77,15 @@ const Movie = () => {
 
               <button onClick={onInsertList}>🔎</button>
             </ul>
-
-            {/* <RadioGroup value={value} onChange={setValue}>
-              <Radio name="contact" value="제목" defaultChecked>
-                Title
-              </Radio>
-              <Radio name="contact" value="저자">
-                Author
-              </Radio>
-              <Radio name="contact" value="출판사">
-                Publisher
-              </Radio>
-            </RadioGroup> */}
           </div>
         </Button>
-
-        <MoveItem data={data} total={total} offset={offset} limit={limit} />
+        <MoveItem
+          data={data}
+          total={total}
+          offset={offset}
+          limit={limit}
+          isLoading={isLoading}
+        />
 
         <Pagination total={total} limit={limit} page={page} setPage={setPage} />
       </Container>

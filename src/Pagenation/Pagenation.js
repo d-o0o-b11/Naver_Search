@@ -1,33 +1,51 @@
 import styled from "styled-components";
+import React, { useEffect, useState } from "react";
 
-function Pagination({ total, limit, page, setPage }) {
+const Pagination = ({ total, limit, page, setPage }) => {
   if (total > 100) total = 100;
 
   const numPages = Math.ceil(total / limit);
+  const [count, SetCount] = useState(0);
 
+  useEffect(() => {
+    SetCount(0);
+  }, []);
+
+  const handleChange = (page) => {
+    if (page % 5 === 0) {
+      SetCount((preNum) => preNum + 1);
+      console.log(page);
+    }
+  };
+  console.log(page);
   return (
     <>
       <Nav>
         <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
           &lt;
         </Button>
-        {Array(numPages)
+        {Array(5)
           .fill()
           .map((_, i) => (
             <Button
-              key={i + 1}
-              onClick={() => setPage(i + 1)}
+              key={i + 1 + 5 * count}
+              onClick={() => setPage(i + 1 + 5 * count)}
               aria-current={page === i + 1 ? "page" : null}>
-              {i + 1}
+              {i + 1 + 5 * count}
             </Button>
           ))}
-        <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
+        <Button
+          onClick={() => {
+            setPage(page + 1);
+            handleChange(page);
+          }}
+          disabled={page === numPages}>
           &gt;
         </Button>
       </Nav>
     </>
   );
-}
+};
 
 const Nav = styled.nav`
   display: flex;
