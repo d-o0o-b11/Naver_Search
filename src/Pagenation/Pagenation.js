@@ -1,27 +1,38 @@
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 
-const Pagination = ({ total, limit, page, setPage }) => {
+const Pagination = ({ total, limit, page, setPage, count, setCount }) => {
   if (total > 100) total = 100;
 
   const numPages = Math.ceil(total / limit);
-  const [count, SetCount] = useState(0);
+  //  const [count, setCount] = useState(0);
+  console.log("dsfdf" + count);
 
-  useEffect(() => {
-    SetCount(0);
-  }, []);
+  // useEffect(() => {
+  //   console.log(count);
+  // }, []);
 
-  const handleChange = (page) => {
+  const upChange = (page) => {
     if (page % 5 === 0) {
-      SetCount((preNum) => preNum + 1);
-      console.log(page);
+      setCount((preNum) => preNum + 1);
+    }
+  };
+
+  const downChange = (page) => {
+    if (page % 5 === 1) {
+      setCount((preNum) => preNum - 1);
     }
   };
   console.log(page);
   return (
     <>
       <Nav>
-        <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
+        <Button
+          onClick={() => {
+            setPage(page - 1);
+            downChange(page);
+          }}
+          disabled={page === 1}>
           &lt;
         </Button>
         {Array(5)
@@ -37,7 +48,7 @@ const Pagination = ({ total, limit, page, setPage }) => {
         <Button
           onClick={() => {
             setPage(page + 1);
-            handleChange(page);
+            upChange(page);
           }}
           disabled={page === numPages}>
           &gt;

@@ -18,6 +18,7 @@ const Book = () => {
   const [limit, setLimit] = useState(9);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
+  const [count, SetCount] = useState(0);
 
   useEffect(() => {
     SetIsLoading(false);
@@ -45,6 +46,7 @@ const Book = () => {
           SetTotal(res.data.total);
           SetIsLoading(false);
           setPage(1);
+          SetCount(0);
         })
         .catch((err) => console.log(err));
     }
@@ -99,7 +101,14 @@ const Book = () => {
           isLoading={isLoading}
         />
 
-        <Pagination total={total} limit={limit} page={page} setPage={setPage} />
+        <Pagination
+          total={total}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+          count={count}
+          setCount={SetCount}
+        />
       </Container>
     </>
   );
