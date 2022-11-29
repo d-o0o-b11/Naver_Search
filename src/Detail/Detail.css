@@ -1,6 +1,6 @@
 .search {
   border-radius: 20px;
-  width: 90%;
+  width: 80%;
   height: 48px;
   background-color: white;
   margin: 0 auto;
@@ -25,6 +25,7 @@
   font-weight: bold;
   outline: none;
   border: none;
+  cursor: pointer;
 }
 
 .stitle {
