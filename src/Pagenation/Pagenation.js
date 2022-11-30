@@ -1,16 +1,27 @@
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 
-const Pagination = ({ total, limit, page, setPage, count, setCount }) => {
-  if (total > 100) total = 100;
-
-  const numPages = Math.ceil(total / limit);
-  //  const [count, setCount] = useState(0);
-  console.log("dsfdf" + count);
-
-  // useEffect(() => {
-  //   console.log(count);
-  // }, []);
+const Pagination = ({
+  total,
+  limit,
+  page,
+  setPage,
+  count,
+  setCount,
+  numPages,
+  SetNumPages,
+  Test,
+  SetTest,
+}) => {
+  useEffect(() => {
+    if (Number(Math.floor(numPages / 5)) !== 0) {
+      SetTest(5);
+      SetNumPages((preNum) => preNum - 5);
+    } else {
+      SetTest(numPages % 5);
+      SetNumPages((preNum) => preNum - (preNum % 5));
+    }
+  }, [total, count]);
 
   const upChange = (page) => {
     if (page % 5 === 0) {
@@ -21,9 +32,13 @@ const Pagination = ({ total, limit, page, setPage, count, setCount }) => {
   const downChange = (page) => {
     if (page % 5 === 1) {
       setCount((preNum) => preNum - 1);
+      SetNumPages(numPages + 5);
+      console.log("page더하기: " + numPages);
     }
   };
   console.log(page);
+  console.log(numPages);
+  console.log("배열크기: " + Test);
   return (
     <>
       <Nav>
@@ -35,13 +50,13 @@ const Pagination = ({ total, limit, page, setPage, count, setCount }) => {
           disabled={page === 1}>
           &lt;
         </Button>
-        {Array(5)
+        {Array(Test)
           .fill()
           .map((_, i) => (
             <Button
               key={i + 1 + 5 * count}
               onClick={() => setPage(i + 1 + 5 * count)}
-              aria-current={page === i + 1 ? "page" : null}>
+              aria-current={page === i + 1 + 5 * count ? "page" : null}>
               {i + 1 + 5 * count}
             </Button>
           ))}

@@ -7,10 +7,10 @@ import Radio from "../Style-Component/Radio/Radio";
 import RadioGroup from "../Style-Component/Radio/RadioGroup";
 import BookItem from "../List/BookItem";
 import axios from "axios";
-import Pagination from "../Pagenation/Pagenation";
+import Pagination from "react-js-pagination";
+import "./Pagination.css";
 
 const Book = () => {
-  const [value, setValue] = useState("제목");
   const [data, Setdata] = useState([]);
   const [total, SetTotal] = useState(0);
   const [title, SetTitle] = useState("");
@@ -49,6 +49,8 @@ const Book = () => {
           SetCount(0);
         })
         .catch((err) => console.log(err));
+    } else {
+      alert("제목을 입력해주세요");
     }
   };
 
@@ -60,6 +62,10 @@ const Book = () => {
     if (e.key === "Enter") {
       onInsertList();
     }
+  };
+
+  const handlePageChange = (page) => {
+    setPage(page);
   };
 
   return (
@@ -79,18 +85,6 @@ const Book = () => {
               />
               <button onClick={onInsertList}>🔎</button>
             </ul>
-
-            {/* <RadioGroup value={value} onChange={setValue}>
-              <Radio name="contact" value="제목" defaultChecked>
-                Title
-              </Radio>
-              <Radio name="contact" value="저자">
-                Author
-              </Radio>
-              <Radio name="contact" value="출판사">
-                Publisher
-              </Radio>
-            </RadioGroup> */}
           </div>
         </Button>
         <BookItem
@@ -100,14 +94,14 @@ const Book = () => {
           limit={limit}
           isLoading={isLoading}
         />
-
         <Pagination
-          total={total}
-          limit={limit}
-          page={page}
-          setPage={setPage}
-          count={count}
-          setCount={SetCount}
+          activePage={page}
+          itemsCountPerPage={9}
+          totalItemsCount={total}
+          pageRangeDisplayed={5}
+          prevPageText={"‹"}
+          nextPageText={"›"}
+          onChange={handlePageChange}
         />
       </Container>
     </>
