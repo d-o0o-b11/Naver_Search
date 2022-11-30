@@ -12,7 +12,8 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
-app.use("/search", (req, res) => {
+//use
+app.get("/movie", (req, res) => {
   console.log("server-search");
   const word = req.query.query;
   console.log(word);
@@ -20,7 +21,7 @@ app.use("/search", (req, res) => {
     .get("https://openapi.naver.com/v1/search/movie.json", {
       params: {
         query: word,
-        display: 20,
+        display: 100,
       },
       headers: {
         "X-Naver-Client-Id": ID_KEY,
@@ -28,14 +29,21 @@ app.use("/search", (req, res) => {
         "Access-Control-Allow-Origin": "*",
       },
     })
-    .then(function (response) {
-      console.log(response.data.items);
-      const items = response.data.items;
+    .then((response) => {
+      const items = response.data;
       res.send({ items: items });
     })
     .catch(function (error) {
       console.log(error);
     });
+});
+
+app.get("/", (req, res) => {
+  res.send("안녕하세요");
+});
+
+app.get("/help", (req, res) => {
+  res.send("어떤 도움이 필요하십니까");
 });
 
 app.listen(port, () => {

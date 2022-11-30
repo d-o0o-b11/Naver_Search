@@ -47,6 +47,7 @@ const Book = () => {
           SetIsLoading(false);
           setPage(1);
           SetCount(0);
+          console.log(res.data);
         })
         .catch((err) => console.log(err));
     } else {

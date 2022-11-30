@@ -4,6 +4,7 @@ import "./App.css";
 import Main from "./Main/Main";
 import Book from "./Detail/Book";
 import Movie from "./Detail/Movie";
+import Help from "./Help";
 import { SkeletonTheme } from "react-loading-skeleton";
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/book" exact={true} element={<Book />} />
           {/* Movie */}
           <Route path="/movie" exact={true} element={<Movie />} />
+          <Route path="/help" exact={true} element={<Help />} />
         </Routes>
       </BrowserRouter>
     </SkeletonTheme>

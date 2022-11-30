@@ -37,27 +37,20 @@ const Movie = () => {
   const onInsertList = () => {
     if (title !== "") {
       SetIsLoading(true);
-      const ID_KEY = "WsGKyLCy_ji5cwnsgvoZ";
-      const SECRET_KEY = "9OQFQICZ8p";
       axios
-        .get("/api/v1/search/movie.json", {
+        .get("http://localhost:3001/movie", {
           params: {
             query: title,
-            display: 100,
-          },
-          headers: {
-            "X-Naver-Client-Id": ID_KEY,
-            "X-Naver-Client-Secret": SECRET_KEY,
-            "Access-Control-Allow-Origin": "*",
           },
         })
         .then((res) => {
           Setdata(res.data.items);
-          SetTotal(res.data.total);
+          SetTotal(res.data.items.length);
           SetIsLoading(false);
           setPage(1);
           SetCount(0);
           SetTest(Test);
+          console.log(res.data.items.length);
         })
         .catch((err) => console.log(err));
     } else {
@@ -105,6 +98,7 @@ const Movie = () => {
             </ul>
           </div>
         </Button>
+
         <MoveItem
           data={data}
           total={total}
