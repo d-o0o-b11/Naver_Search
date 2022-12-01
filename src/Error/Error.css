@@ -1,0 +1,33 @@
+.Error img {
+  width: 130px;
+  height: 130px;
+}
+
+.Error {
+  display: flex;
+  height: 100vh;
+  background-color: #fbecec;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.Error frame {
+  margin-top: 10px;
+}
+
+.Error button {
+  width: 30%;
+  margin-top: 20px;
+  border: none;
+  padding: 15px 30px;
+  background-color: #e2574c;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 20px;
+}
+
+.Error button a {
+  color: white !important;
+}

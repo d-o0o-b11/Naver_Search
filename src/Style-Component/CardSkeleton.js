@@ -23,14 +23,14 @@ const CardSkeleton = ({ cards }) => {
 };
 
 const StyledCard = styled.div`
-  width: 70%;
+  width: 60%;
   heigth: 80%;
   min-height: 80%;
   padding: 0.5rem;
-  border: 2px solid gray;
+  border: none;
   border-radius: 20px;
   margin: 80px 60px;
-  background-color: rgba(0, 0, 0, 0.28);
+  background: rgba(248, 241, 241, 0.6);
   margin: 0 auto;
 
   .left-col {

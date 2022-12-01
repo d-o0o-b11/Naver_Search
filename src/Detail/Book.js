@@ -3,8 +3,6 @@ import Header from "./Header";
 import "./Detail.css";
 import Container from "../Style-Component/Container";
 import Button from "../Style-Component/Button";
-import Radio from "../Style-Component/Radio/Radio";
-import RadioGroup from "../Style-Component/Radio/RadioGroup";
 import BookItem from "../List/BookItem";
 import axios from "axios";
 import Pagination from "react-js-pagination";
@@ -18,7 +16,6 @@ const Book = () => {
   const [limit, setLimit] = useState(9);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
-  const [count, SetCount] = useState(0);
 
   useEffect(() => {
     SetIsLoading(false);
@@ -27,29 +24,21 @@ const Book = () => {
   const onInsertList = () => {
     if (title !== "") {
       SetIsLoading(true);
-      const ID_KEY = "WsGKyLCy_ji5cwnsgvoZ";
-      const SECRET_KEY = "9OQFQICZ8p";
       axios
-        .get("/api/v1/search/book.json", {
+        .get("http://localhost:3001/book", {
           params: {
             query: title,
-            display: 100,
-          },
-          headers: {
-            "X-Naver-Client-Id": ID_KEY,
-            "X-Naver-Client-Secret": SECRET_KEY,
-            "Access-Control-Allow-Origin": "*",
           },
         })
         .then((res) => {
-          Setdata(res.data.items);
-          SetTotal(res.data.total);
+          Setdata(res.data.items.items);
+          SetTotal(res.data.items.total);
           SetIsLoading(false);
-          setPage(1);
-          SetCount(0);
-          console.log(res.data);
+          // console.log(res.data);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          window.location.href = "/error";
+        });
     } else {
       alert("제목을 입력해주세요");
     }

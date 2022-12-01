@@ -5,12 +5,10 @@ import Container from "../Style-Component/Container";
 import Button from "../Style-Component/Button";
 import MoveItem from "../List/MoveItem";
 import axios from "axios";
-// import Pagination from "../Pagenation/Pagenation";
 import Pagination from "react-js-pagination";
 import "./Pagination.css";
 
 const Movie = () => {
-  const [value, setValue] = useState("제목");
   const [data, Setdata] = useState([]);
   const [total, SetTotal] = useState(0);
   const [title, SetTitle] = useState("");
@@ -18,21 +16,10 @@ const Movie = () => {
   const [limit, setLimit] = useState(9);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
-  const [count, SetCount] = useState(0);
-  const [numPages, SetNumPages] = useState(0);
-  const [Test, SetTest] = useState(0);
 
   useEffect(() => {
     SetIsLoading(false);
   }, []);
-
-  // useEffect(() => {
-  //   SetNumPages(0);
-  //   if (total > 100) SetTotal(100);
-  //   let store = Math.ceil(total / limit);
-  //   SetNumPages(store);
-  //   console.log("sroe: " + store);
-  // }, [data]);
 
   const onInsertList = () => {
     if (title !== "") {
@@ -44,26 +31,18 @@ const Movie = () => {
           },
         })
         .then((res) => {
-          Setdata(res.data.items);
-          SetTotal(res.data.items.length);
+          Setdata(res.data.items.items);
+          SetTotal(res.data.items.total);
           SetIsLoading(false);
-          setPage(1);
-          SetCount(0);
-          SetTest(Test);
-          console.log(res.data.items.length);
+          // console.log(res.data.items.items);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          window.location.href = "/error";
+        });
     } else {
       alert("제목을 입력해주세요");
     }
   };
-
-  // const Totallimit = () => {
-  //   if (total > 100) SetTotal(100);
-  //   let store = Math.ceil(total / limit);
-  //   SetNumPages(store);
-  //   console.log(store);
-  // };
 
   const handleChange = (e) => {
     SetTitle(e.target.value);
@@ -107,18 +86,6 @@ const Movie = () => {
           isLoading={isLoading}
         />
 
-        {/* <Pagination
-          total={total}
-          limit={limit}
-          page={page}
-          setPage={setPage}
-          count={count}
-          setCount={SetCount}
-          numPages={numPages}
-          SetNumPages={SetNumPages}
-          Test={Test}
-          SetTest={SetTest}
-        /> */}
         <Pagination
           activePage={page}
           itemsCountPerPage={9}
