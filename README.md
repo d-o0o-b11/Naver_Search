@@ -9,8 +9,6 @@
 <br>
 
 ## 개발 환경
-//리액트
-//express
 <p>
   <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
   <img src="https://img.shields.io/badge/Express-000000?style=flat&logo=Express&logoColor=white"/>
